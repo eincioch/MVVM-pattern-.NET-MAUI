@@ -12,7 +12,7 @@ public partial class RecipesOverviewPage : ContentPage
 
     private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-		if(e.CurrentSelection.Count != 0)
-		this.Navigation.PushAsync(new RecipeDetailPage());
+        if (e.CurrentSelection.Count != 0)
+            Shell.Current.GoToAsync("RecipeDetail");
     }
 }

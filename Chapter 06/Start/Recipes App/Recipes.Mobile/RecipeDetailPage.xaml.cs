@@ -14,6 +14,6 @@ public partial class RecipeDetailPage : ContentPage
 
     private void Ratings_Tapped(object sender, TappedEventArgs e)
     {
-        this.Navigation.PushAsync(new RecipeRatingDetailPage());
+        Shell.Current.GoToAsync("RecipeRating");
     }
 }

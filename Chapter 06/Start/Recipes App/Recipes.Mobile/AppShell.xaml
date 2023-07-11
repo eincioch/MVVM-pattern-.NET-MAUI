@@ -6,6 +6,6 @@
     xmlns:local="clr-namespace:Recipes.Mobile"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent ContentTemplate="{DataTemplate local:RecipeDetailPage}" Route="MainPage" />
+    <ShellContent Title="Home" ContentTemplate="{DataTemplate local:RecipeDetailPage}" />
 
 </Shell>
