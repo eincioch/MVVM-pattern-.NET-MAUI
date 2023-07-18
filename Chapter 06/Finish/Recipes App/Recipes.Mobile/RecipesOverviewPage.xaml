@@ -30,22 +30,26 @@
         SelectionMode="Single">
         <CollectionView.HeaderTemplate>
             <DataTemplate>
-                <Label
-                    Margin="10"
-                    FontSize="18"
-                    HorizontalOptions="Center"
-                    Text="{Binding TotalNumberOfRecipes, StringFormat='Browse through {0} Recipes!'}"
-                    TextColor="White" />
+                <Grid>
+                    <Label
+                        Margin="10"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="{Binding TotalNumberOfRecipes, StringFormat='Browse through {0} Recipes!'}"
+                        TextColor="White" />
+                </Grid>
             </DataTemplate>
         </CollectionView.HeaderTemplate>
         <CollectionView.FooterTemplate>
             <DataTemplate>
-                <Label
-                    Margin="10"
-                    FontSize="18"
-                    HorizontalOptions="Center"
-                    Text="{Binding StringFormat='This is the end. {0}', Mode=OneTime}"
-                    TextColor="White" />
+                <Grid>
+                    <Label
+                        Margin="10"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="{Binding StringFormat='This is the end. {0}', Mode=OneTime}"
+                        TextColor="White" />
+                </Grid>
             </DataTemplate>
         </CollectionView.FooterTemplate>
         <CollectionView.ItemTemplate>

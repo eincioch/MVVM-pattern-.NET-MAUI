@@ -22,11 +22,13 @@
             SelectionMode="Multiple">
             <CollectionView.HeaderTemplate>
                 <DataTemplate>
-                    <Label
-                        FontSize="18"
-                        HorizontalOptions="Center"
-                        Text="{Binding RecipeTitle, StringFormat='Reviews for {0}'}"
-                        TextColor="{StaticResource Primary}" />
+                    <Grid>
+                        <Label
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Text="{Binding RecipeTitle, StringFormat='Reviews for {0}'}"
+                            TextColor="{StaticResource Primary}" />
+                    </Grid>
                 </DataTemplate>
             </CollectionView.HeaderTemplate>
             <CollectionView.GroupHeaderTemplate>

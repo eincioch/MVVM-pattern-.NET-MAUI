@@ -6,9 +6,6 @@
     xmlns:local="clr-namespace:MVVM_Demo"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage_MVVM}"
-        Route="MainPage" />
+    <ShellContent Title="Quote of the Day" ContentTemplate="{DataTemplate local:MainPage_MVVM}" />
 
 </Shell>
