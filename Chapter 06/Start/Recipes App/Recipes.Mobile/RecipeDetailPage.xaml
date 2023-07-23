@@ -55,7 +55,7 @@
 
             <Label FontSize="8" HorizontalOptions="End">
                 <Label.Text>
-                    <MultiBinding StringFormat="{}Last updated: {0:D} | {1}">
+                    <MultiBinding StringFormat="Last updated: {0:D} | {1}">
                         <Binding Path="LastUpdated" />
                         <Binding Path="Author" />
                     </MultiBinding>

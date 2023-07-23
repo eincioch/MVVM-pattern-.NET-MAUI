@@ -15,7 +15,7 @@ public partial class RecipeDetailPage : ContentPage
         //	BindingMode.OneTime);
 
         //lblRating.SetBinding(Label.TextProperty,
-            //$"{nameof(RecipeDetailViewModel.RatingDetail)}.{nameof(RecipeRatingsDetailViewModel.AverageRating)}",
+            //$"{nameof(RecipeDetailViewModel.RatingSummary)}.{nameof(RecipeRatingsDetailViewModel.AverageRating)}",
             //converter: new RatingToStarsConverter());
     }
 }

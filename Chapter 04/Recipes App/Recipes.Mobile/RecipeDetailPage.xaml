@@ -29,7 +29,7 @@
             <!--  Multibind LastUpdated and Author  -->
             <Label FontSize="8" HorizontalOptions="End">
                 <Label.Text>
-                    <MultiBinding StringFormat="{}Last updated: {0:D} | {1}">
+                    <MultiBinding StringFormat="Last updated: {0:D} | {1}">
                         <Binding Path="LastUpdated" />
                         <Binding Path="Author" />
                     </MultiBinding>
@@ -51,27 +51,27 @@
                         <!--<Label
                         FontFamily="MaterialIconsRegular"
                         FontSize="18"
-                        Text="{Binding RatingDetail.MaxRating, Converter={StaticResource ratingToStarsConverter}}"
-                        TextColor="{Binding RatingDetail.AverageRating, Converter={StaticResource ratingToColorConverter}, ConverterParameter=background, TargetNullValue={x:Static Colors.HotPink}}" />
+                        Text="{Binding RatingSummary.MaxRating, Converter={StaticResource ratingToStarsConverter}}"
+                        TextColor="{Binding RatingSummary.AverageRating, Converter={StaticResource ratingToColorConverter}, ConverterParameter=background, TargetNullValue={x:Static Colors.HotPink}}" />
 
                     <Label
                         FontFamily="MaterialIconsRegular"
                         FontSize="18"
-                        Text="{Binding RatingDetail.AverageRating, Converter={StaticResource ratingToStarsConverter}}"
-                        TextColor="{Binding RatingDetail.AverageRating, Converter={StaticResource ratingToColorConverter}}" />-->
+                        Text="{Binding RatingSummary.AverageRating, Converter={StaticResource ratingToStarsConverter}}"
+                        TextColor="{Binding RatingSummary.AverageRating, Converter={StaticResource ratingToColorConverter}}" />-->
 
                         <!--  Rating indicator with TextColor dependant on TotalReviews and AverageRating using MultiBinding and an IMultiValueConverter  -->
                         <Label
                             FontFamily="MaterialIconsRegular"
                             FontSize="18"
-                            Text="{Binding RatingDetail.MaxRating, Converter={StaticResource ratingToStarsConverter}}">
+                            Text="{Binding RatingSummary.MaxRating, Converter={StaticResource ratingToStarsConverter}}">
                             <Label.TextColor>
                                 <MultiBinding
                                     Converter="{StaticResource ratingAndReviewsToColorConverter}"
                                     ConverterParameter="background"
                                     TargetNullValue="{x:Static Colors.HotPink}">
-                                    <Binding Path="RatingDetail.TotalReviews" />
-                                    <Binding Path="RatingDetail.AverageRating" />
+                                    <Binding Path="RatingSummary.TotalReviews" />
+                                    <Binding Path="RatingSummary.AverageRating" />
                                 </MultiBinding>
                             </Label.TextColor>
                         </Label>
@@ -79,11 +79,11 @@
                         <Label
                             FontFamily="MaterialIconsRegular"
                             FontSize="18"
-                            Text="{Binding RatingDetail.AverageRating, Converter={StaticResource ratingToStarsConverter}}">
+                            Text="{Binding RatingSummary.AverageRating, Converter={StaticResource ratingToStarsConverter}}">
                             <Label.TextColor>
                                 <MultiBinding Converter="{StaticResource ratingAndReviewsToColorConverter}">
-                                    <Binding Path="RatingDetail.TotalReviews" />
-                                    <Binding Path="RatingDetail.AverageRating" />
+                                    <Binding Path="RatingSummary.TotalReviews" />
+                                    <Binding Path="RatingSummary.AverageRating" />
                                 </MultiBinding>
                             </Label.TextColor>
                         </Label>
@@ -91,7 +91,7 @@
                     </Grid>
                     <Label
                         FontSize="8"
-                        Text="{Binding RatingDetail.AverageRating, StringFormat='{0:0.#} avg. rating', FallbackValue='Ratings not available', TargetNullValue='No ratings yet'}"
+                        Text="{Binding RatingSummary.AverageRating, StringFormat='{0:0.#} avg. rating', FallbackValue='Ratings not available', TargetNullValue='No ratings yet'}"
                         VerticalOptions="End" />
                 </HorizontalStackLayout>
             </VerticalStackLayout>
