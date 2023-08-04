@@ -19,7 +19,3 @@ public partial class App : Application
         //ServiceProvider.Current.GetService<INavigationService>().GoToOverview();
     }
 }
-public class Label
-{
-    public string Text { get; set; }
-}

@@ -6,7 +6,6 @@ using Recipes.Client.Core.Ratings;
 using Recipes.Client.Core.Recipes;
 using Recipes.Client.Core.ViewModels;
 using Recipes.Mobile.Navigation;
-//using Recipes.Mobile.Navigation;
 
 namespace Recipes.Mobile;
 
@@ -32,7 +31,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<RecipeDetailPage>();
 		builder.Services.AddTransient<RecipeDetailViewModel>();
         
-		builder.Services.AddTransient<RecipeRatingDetailPage>();
+		builder.Services.AddTransient<RecipeRatingsDetailPage>();
         builder.Services.AddTransient<RecipeRatingsDetailViewModel>();
 
         builder.Services.AddTransient<SettingsPage>();
@@ -57,7 +56,7 @@ public static class MauiProgram
             c => c.GetRequiredService<NavigationService>());
         Routing.RegisterRoute("Overview", typeof(RecipesOverviewPage));
         Routing.RegisterRoute("RecipeDetail", typeof(RecipeDetailPage));
-        Routing.RegisterRoute("RecipeRating", typeof(RecipeRatingDetailPage));
+        Routing.RegisterRoute("RecipeRating", typeof(RecipeRatingsDetailPage));
         //Shell
 
         //Non-Shell

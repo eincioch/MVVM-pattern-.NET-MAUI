@@ -131,7 +131,6 @@ public partial class RecipeDetailViewModel : ObservableObject
         AddToShoppingListCommand = new RelayCommand<RecipeIngredientViewModel>(AddToShoppingList);
         RemoveFromShoppingListCommand = new RelayCommand<RecipeIngredientViewModel>(RemoveFromShoppingList);
 
-        //ToDo: load recipe (hard-coded for now)
         LoadRecipe("3");
     }
 

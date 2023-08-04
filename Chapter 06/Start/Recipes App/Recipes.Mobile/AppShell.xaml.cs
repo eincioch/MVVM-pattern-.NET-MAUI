@@ -8,6 +8,6 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute("Overview", typeof(RecipesOverviewPage));
         Routing.RegisterRoute("RecipeDetail", typeof(RecipeDetailPage));
-        Routing.RegisterRoute("RecipeRating", typeof(RecipeRatingDetailPage));
+        Routing.RegisterRoute("RecipeRating", typeof(RecipeRatingsDetailPage));
     }
 }

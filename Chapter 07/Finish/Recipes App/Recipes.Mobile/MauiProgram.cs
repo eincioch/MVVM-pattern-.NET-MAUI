@@ -29,7 +29,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<RecipeDetailPage>();
 		builder.Services.AddTransient<RecipeDetailViewModel>();
         
-		builder.Services.AddTransient<RecipeRatingDetailPage>();
+		builder.Services.AddTransient<RecipeRatingsDetailPage>();
         builder.Services.AddTransient<RecipeRatingsDetailViewModel>();
 
         builder.Services.AddSingleton<IFavoritesService, FavoritesService>();

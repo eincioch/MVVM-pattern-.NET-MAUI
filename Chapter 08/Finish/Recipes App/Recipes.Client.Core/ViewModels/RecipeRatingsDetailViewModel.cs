@@ -8,10 +8,9 @@ using System.Collections.Specialized;
 
 namespace Recipes.Client.Core.ViewModels;
 
-public class RecipeRatingsDetailViewModel : ObservableObject, INavigationParameterReceiver, INavigatedTo, INavigatedFrom//, IOnNavigatingFromAware, IOnNavigatingToAware, IOnNavigatedToAware
+public class RecipeRatingsDetailViewModel : ObservableObject, INavigationParameterReceiver, INavigatedTo, INavigatedFrom
 {
     private readonly IRatingsService ratingsService;
-    private readonly IRecipeService recipeService;
 
     string _recipeTitle = string.Empty;
     public string RecipeTitle 
@@ -33,11 +32,9 @@ public class RecipeRatingsDetailViewModel : ObservableObject, INavigationParamet
     public RelayCommand GoBackCommand { get; }
 
     public RecipeRatingsDetailViewModel(
-        INavigationService navigationService,
-        IRecipeService recipeService, 
+        INavigationService navigationService, 
         IRatingsService ratingsService)
-    {
-        this.recipeService = recipeService;
+    {;
         this.ratingsService = ratingsService;
 
         ReportReviewsCommand = new RelayCommand(ReportReviews, () => SelectedReviews.Any());

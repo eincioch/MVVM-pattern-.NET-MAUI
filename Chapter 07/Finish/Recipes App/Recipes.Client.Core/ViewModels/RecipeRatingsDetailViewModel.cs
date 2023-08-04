@@ -40,7 +40,6 @@ public class RecipeRatingsDetailViewModel : ObservableObject
         ReportReviewsCommand = new RelayCommand(ReportReviews, () => SelectedReviews.Any());
         SelectedReviews.CollectionChanged += SelectedReviews_CollectionChanged;
 
-        //ToDo: load data (hard-coded for now)
         LoadData("3");
     }
 
