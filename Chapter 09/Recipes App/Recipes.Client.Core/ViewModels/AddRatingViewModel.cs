@@ -10,55 +10,12 @@ using System.Diagnostics;
 
 namespace Recipes.Client.Core.ViewModels;
 
-
-
-
-public class ValidationErrorExposer : INotifyPropertyChanged, IDisposable
-{
-    readonly ObservableValidator _validator;
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private Dictionary<string, ObservableCollection<ValidationResult>> _validationResults;
-
-    public ValidationErrorExposer(ObservableValidator observableValidator)
-    {
-        _validationResults = new();
-        _validator = observableValidator;
-        _validator.ErrorsChanged += ObservableValidator_ErrorsChanged;
-    }
-
-    private void ObservableValidator_ErrorsChanged(object? sender, DataErrorsChangedEventArgs e)
-    {
-        var property = e.PropertyName;
-        if (_validationResults.ContainsKey(property))
-        {
-            _validationResults[property].Clear();
-            _validator.GetErrors(property).ToList()
-                .ForEach(_validationResults[property].Add);
-        }
-        else
-        {
-            _validationResults.Add(property,
-                new(_validator.GetErrors(property)));
-        }
-
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item"));
-    }
-
-    public void Dispose()
-    {
-        _validator.ErrorsChanged += ObservableValidator_ErrorsChanged;
-    }
-
-    public ObservableCollection<ValidationResult> this[string property] => _validationResults[property];
-}
-
 public class AddRatingViewModel : ObservableValidator, INavigationParameterReceiver, INavigatedFrom
 {
 
     readonly INavigationService _navigationService;
-    public const string EmailValidationRegex = @"^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$";
+    readonly IDialogService _dialogService;
+    public const string EmailValidationRegex = @"^[aA-zZ0-9]+@[aA-zZ]+\.[aA-zZ]{2,3}$";
     public const string RangeDecimalRegex = @"^\d+(\.\d{1,1})?$";
     public const int DisplayNameMinLength = 5;
     public const int DisplayNameMaxLength = 25;
@@ -78,8 +35,18 @@ public class AddRatingViewModel : ObservableValidator, INavigationParameterRecei
     public string EmailAddress
     {
         get => _emailAddress;
-        set => SetProperty(ref _emailAddress, value, true);
+        set
+        {
+            SetProperty(ref _emailAddress, value, true);
+            OnPropertyChanged(nameof(EmailValidationErrors));
+        }
     }
+
+    public List<ValidationResult> EmailValidationErrors 
+    { 
+        get => GetErrors(nameof(EmailAddress)).ToList();
+    }
+         
 
     string _displayName;
 
@@ -103,32 +70,36 @@ public class AddRatingViewModel : ObservableValidator, INavigationParameterRecei
         set
         {
             SetProperty(ref _ratingInput, value, true);
-         //   ValidateProperty(Review, nameof(Review));
+            ValidateProperty(Review, nameof(Review));
         }
     }
 
     string _review;
+    
 
-    //[CustomValidation(typeof(AddRatingViewModel), nameof(ValidateReview))]
-    [EmptyOrHavingMinMaxLength(
-        MinLength = 2, MaxLength = 10)]
+    [CustomValidation(
+        typeof(AddRatingViewModel), 
+        nameof(ValidateReview))]
+    [EmptyOrWithinRange(
+        MinLength = 10, MaxLength = 250)]
     public string Review
     {
         get => _review;
         set => SetProperty(ref _review, value, true);
     }
+    
     public ValidationErrorExposer ErrorExposer { get; }
 
 
     public RelayCommand GoBackCommand { get; }
 
-    public RelayCommand SubmitCommand { get; }
+    public AsyncRelayCommand SubmitCommand { get; }
 
     public AddRatingViewModel(INavigationService navigationService)
     {
         _navigationService = navigationService;
         GoBackCommand = new RelayCommand(() => _navigationService.GoBack());
-        SubmitCommand = new RelayCommand(OnSubmit, () => !HasErrors);
+        SubmitCommand = new AsyncRelayCommand(OnSubmit, () => !HasErrors);
         Errors = new ();
         ErrorExposer = new (this);
         ErrorsChanged += AddRatingViewModel_ErrorsChanged;
@@ -143,9 +114,6 @@ public class AddRatingViewModel : ObservableValidator, INavigationParameterRecei
         SubmitCommand.NotifyCanExecuteChanged();
     }
 
-    //private bool IsValid()
-    //    => !HasErrors;
-
     private void ResetInputFields()
     {
         EmailAddress = "";
@@ -154,11 +122,10 @@ public class AddRatingViewModel : ObservableValidator, INavigationParameterRecei
         Review = "";
     }
 
-    public ObservableCollection<ValidationResult> Errors { get; }
+    public ObservableCollection<ValidationResult> Errors { get; } = new();
 
-    private void OnSubmit()
+    private async Task OnSubmit()
     {
-        //ValidateAllProperties();
         ValidateProperty(EmailAddress, nameof(EmailAddress));
         ValidateProperty(DisplayName, nameof(DisplayName));
         ValidateProperty(DisplayName, nameof(DisplayName));
@@ -174,10 +141,6 @@ public class AddRatingViewModel : ObservableValidator, INavigationParameterRecei
         {
             Debug.WriteLine("All OK");
         }
-
-        //var x = this.HasErrors;
-        //var y = this.GetErrors(nameof(EmailAddress));
-        ////throw new NotImplementedException();
     }
 
     private async Task LoadData(RecipeDetailDto recipe)
@@ -206,22 +169,12 @@ public class AddRatingViewModel : ObservableValidator, INavigationParameterRecei
 
         if (double.TryParse(instance.RatingInput, out var rating))
         {
-            if (rating < 2 && string.IsNullOrEmpty(review))
+            if (rating <= 2 && string.IsNullOrEmpty(review))
             {
-                return new("A review as mandatory when rating the recipe 2 or less.");
+                return new("A review is mandatory when rating the recipe 2 or less.");
             }
         }
 
         return ValidationResult.Success;
     }
 }
-
-
-
-//<Entry Text = "{Binding EmailAddress, Mode=TwoWay}" />
-//    < Label Text="Display name:" />
-//    <Entry Text = "{Binding DisplayName, Mode=TwoWay}" />
-//    < Label Text="Rating (1-5):" />
-//    <Entry Text = "{Binding RatingInput, Mode=TwoWay}" />
-//    < Label Text="Review (optional):" />
-//    <Entry Text = "{Binding Review, Mode=TwoWay}" />

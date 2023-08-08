@@ -2,7 +2,7 @@
 
 namespace Recipes.Client.Core.Validation;
 
-public class EmptyOrHavingMinMaxLengthAttribute : ValidationAttribute
+public class EmptyOrWithinRangeAttribute : ValidationAttribute
 {
     public int MinLength { get; set; }
     public int MaxLength { get; set; }

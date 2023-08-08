@@ -33,6 +33,7 @@
         </Grid>
         <Label Text="Your email address:" />
         <Entry Text="{Binding EmailAddress, Mode=TwoWay}">
+        
             <!--<Entry.Behaviors>
                 <toolkit:EmailValidationBehavior
                     Flags="ValidateOnValueChanged"
@@ -41,6 +42,16 @@
                     ValidStyle="{StaticResource ValidEntryStyle}" />
             </Entry.Behaviors>-->
         </Entry>
+        <!--<VerticalStackLayout BindableLayout.ItemsSource="{Binding EmailValidationErrors}">-->
+        <VerticalStackLayout BindableLayout.ItemsSource="{Binding ErrorExposer[EmailAddress]}">
+        <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="annotations:ValidationResult">
+                    <Label Text="{Binding ErrorMessage}" 
+                        FontSize="12"
+                        TextColor="Red"/>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
         <!--<Label Text="{Binding Errors2[EmailAddress]}" TextColor="Red" />-->
         <!--<Grid ColumnDefinitions="Auto, Auto">
             <Label Text="!!!" VerticalOptions="Center">
@@ -91,14 +102,25 @@
 
         <Label Text="Review (optional):" />
         <Editor Text="{Binding Review, Mode=TwoWay}" />
-
-        <!--<VerticalStackLayout BindableLayout.ItemsSource="{Binding Errors}" IsVisible="{Binding HasErrors}">
-            <BindableLayout.ItemTemplate>
+        <VerticalStackLayout BindableLayout.ItemsSource="{Binding ErrorExposer[Review]}">
+        <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="annotations:ValidationResult">
-                    <Label Text="{Binding ErrorMessage}" />
+                    <Label Text="{Binding ErrorMessage}" 
+                        FontSize="12"
+                        TextColor="Red"/>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
-        </VerticalStackLayout>-->
+        </VerticalStackLayout>
+
+        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Errors}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="annotations:ValidationResult">
+                    <Label Text="{Binding ErrorMessage}" 
+                        FontSize="12"
+                        TextColor="Red"/>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
 
         <Button Command="{Binding SubmitCommand}" Text="Submit" />
 
