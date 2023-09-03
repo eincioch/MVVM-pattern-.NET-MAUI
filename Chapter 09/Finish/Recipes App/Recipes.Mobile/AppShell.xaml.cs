@@ -3,7 +3,6 @@ using Recipes.Mobile.Navigation;
 
 namespace Recipes.Mobile;
 
-
 public partial class AppShell : Shell
 {
     INavigationInterceptor interceptor;
@@ -46,56 +45,6 @@ public partial class AppShell : Shell
         await interceptor.OnNavigatedTo(
             CurrentPage?.BindingContext, navigationType);
     }
-
-    //protected override async void OnNavigating(ShellNavigatingEventArgs args)
-    //{
-    //    ShellNavigatingDeferral token = args.GetDeferral();
-
-    //    var navigationType = GetNavigationType(args.Source);
-
-    //    var canNavigate = await shellNavigationInterceptor.CanNavigate(CurrentPage?.BindingContext, navigationType);
-
-    //    if (!canNavigate)
-    //    {
-    //        args.Cancel();
-    //    }
-    //    else
-    //    {
-    //        await shellNavigationInterceptor.OnNavigating(CurrentPage?.BindingContext, GetNavigationType(args.Source));
-    //    }
-
-    //    token?.Complete();
-
-
-    //    base.OnNavigating(args);
-    //}
-
-    //protected override async void OnNavigating(ShellNavigatingEventArgs args)
-    //{
-    //    ShellNavigatingDeferral token = args.GetDeferral();
-    //    var navigationType = GetNavigationType(args.Source);
-
-    //    await shellNavigationInterceptor.OnNavigatingFrom(CurrentPage?.BindingContext, navigationType);
-
-    //    token?.Complete();
-    //}
-
-
-
-    //private NavigationType GetNavigationType(ShellNavigationSource source)
-    //    => source switch
-    //    {
-    //        ShellNavigationSource.Unknown => NavigationType.Unknown,
-    //        ShellNavigationSource.Push => NavigationType.Forward,
-    //        ShellNavigationSource.Pop => NavigationType.Back,
-    //        ShellNavigationSource.PopToRoot => NavigationType.Back,
-    //        ShellNavigationSource.Insert => NavigationType.Forward,
-    //        ShellNavigationSource.Remove => NavigationType.Back, 
-    //        ShellNavigationSource.ShellItemChanged => NavigationType.SectionChange,
-    //        ShellNavigationSource.ShellSectionChanged => NavigationType.SectionChange,
-    //        ShellNavigationSource.ShellContentChanged => NavigationType.SectionChange,
-    //        _ => NavigationType.Unknown,
-    //    };
 
     private NavigationType GetNavigationType(ShellNavigationSource source) =>
     source switch

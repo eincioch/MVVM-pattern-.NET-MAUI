@@ -47,7 +47,6 @@ public class AddRatingViewModel : ObservableValidator, INavigationParameterRecei
         get => GetErrors(nameof(EmailAddress)).ToList();
     }
 
-
     string _displayName;
 
     [Required]
@@ -90,7 +89,6 @@ public class AddRatingViewModel : ObservableValidator, INavigationParameterRecei
 
     public ValidationErrorExposer ErrorExposer { get; }
 
-
     public RelayCommand GoBackCommand { get; }
 
     public AsyncRelayCommand SubmitCommand { get; }
@@ -125,25 +123,6 @@ public class AddRatingViewModel : ObservableValidator, INavigationParameterRecei
     }
 
     public ObservableCollection<ValidationResult> Errors { get; } = new();
-
-    //private async Task OnSubmit()
-    //{
-    //    ValidateProperty(EmailAddress, nameof(EmailAddress));
-    //    ValidateProperty(DisplayName, nameof(DisplayName));
-    //    ValidateProperty(DisplayName, nameof(DisplayName));
-
-    //    if(HasErrors)
-    //    {
-    //        var errors = GetErrors();
-    //        Debug.WriteLine(
-    //            string.Join("\r\n",
-    //            errors.Select(e => e.ErrorMessage)));
-    //    }
-    //    else
-    //    {
-    //        Debug.WriteLine("All OK");
-    //    }
-    //}
 
     private async Task OnSubmit()
     {
