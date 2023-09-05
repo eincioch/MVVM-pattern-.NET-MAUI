@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Recipes.Client.Core.Favorites;
+using Recipes.Client.Core.Features.Favorites;
+using Recipes.Client.Core.Features.Recipes;
 using Recipes.Client.Core.Messages;
 using Recipes.Client.Core.Navigation;
-using Recipes.Client.Core.Recipes;
 using System.Collections.ObjectModel;
 
 namespace Recipes.Client.Core.ViewModels;

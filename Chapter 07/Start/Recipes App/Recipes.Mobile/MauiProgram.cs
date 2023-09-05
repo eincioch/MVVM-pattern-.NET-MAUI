@@ -1,9 +1,5 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using Recipes.Client.Core.Favorites;
-using Recipes.Client.Core.Ratings;
-using Recipes.Client.Core.Recipes;
-using Recipes.Client.Core.ViewModels;
 
 namespace Recipes.Mobile;
 

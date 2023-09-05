@@ -19,7 +19,7 @@
     </ContentPage.Resources>
     <CollectionView
         BackgroundColor="{StaticResource Primary}"
-        Footer="We ran out of recipes..."
+        ItemsSource="{Binding Recipes}"
         RemainingItemsThreshold="5"
         RemainingItemsThresholdReachedCommand="{Binding TryLoadMoreItemsCommand}"
         SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}"

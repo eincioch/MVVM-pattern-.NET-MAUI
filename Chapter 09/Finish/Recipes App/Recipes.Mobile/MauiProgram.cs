@@ -1,14 +1,13 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using Recipes.Client.Core.Favorites;
+using Recipes.Client.Core.Features.Favorites;
+using Recipes.Client.Core.Features.Ratings;
+using Recipes.Client.Core.Features.Recipes;
 using Recipes.Client.Core.Navigation;
-using Recipes.Client.Core.Ratings;
-using Recipes.Client.Core.Recipes;
 using Recipes.Client.Core.Services;
 using Recipes.Client.Core.ViewModels;
 using Recipes.Mobile.Navigation;
 using Recipes.Mobile.Services;
-//using Recipes.Mobile.Navigation;
 
 namespace Recipes.Mobile;
 

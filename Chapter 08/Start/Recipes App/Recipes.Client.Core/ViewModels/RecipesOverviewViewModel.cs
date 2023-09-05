@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Recipes.Client.Core.Favorites;
-using Recipes.Client.Core.Recipes;
+using Recipes.Client.Core.Features.Favorites;
+using Recipes.Client.Core.Features.Recipes;
 using System.Collections.ObjectModel;
 
 namespace Recipes.Client.Core.ViewModels;

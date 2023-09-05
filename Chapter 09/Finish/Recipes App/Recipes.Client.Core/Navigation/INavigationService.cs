@@ -1,4 +1,4 @@
-﻿using Recipes.Client.Core.Recipes;
+﻿using Recipes.Client.Core.Features.Recipes;
 
 namespace Recipes.Client.Core.Navigation;
 

@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using Recipes.Client.Core.Favorites;
-using Recipes.Client.Core.Ratings;
-using Recipes.Client.Core.Recipes;
+using Recipes.Client.Core.Features.Favorites;
+using Recipes.Client.Core.Features.Ratings;
+using Recipes.Client.Core.Features.Recipes;
 using Recipes.Client.Core.ViewModels;
 
 namespace Recipes.Mobile;
@@ -39,9 +39,6 @@ public static class MauiProgram
 
 		builder.Services.AddTransient<IRecipeService>(
             serviceProvider => new RecipeService(FileSystem.OpenAppPackageFileAsync("recipedetails.json")));
-
-
-       // FileSystem.OpenAppPackageFileAsync("recipes.json")
 
 #if DEBUG
         builder.Logging.AddDebug();

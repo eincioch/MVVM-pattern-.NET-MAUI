@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using Recipes.Client.Core.Features.Recipes;
 using Recipes.Client.Core.Messages;
-using Recipes.Client.Core.Recipes;
 
 namespace Recipes.Client.Core.ViewModels;
 
