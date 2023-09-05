@@ -19,8 +19,6 @@
     </ContentPage.Resources>
     <CollectionView
         BackgroundColor="{StaticResource Primary}"
-        Footer="We ran out of recipes..."
-        Header="{Binding}"
         ItemsSource="{Binding Recipes}"
         RemainingItemsThreshold="5"
         RemainingItemsThresholdReachedCommand="{Binding TryLoadMoreItemsCommand}"
@@ -28,30 +26,6 @@
         SelectionChanged="CollectionView_SelectionChanged"
         SelectionChangedCommand="{Binding NavigateToSelectedDetailCommand}"
         SelectionMode="Single">
-        <CollectionView.HeaderTemplate>
-            <DataTemplate>
-                <Grid>
-                    <Label
-                        Margin="10"
-                        FontSize="18"
-                        HorizontalOptions="Center"
-                        Text="{Binding TotalNumberOfRecipes, StringFormat='Browse through {0} Recipes!'}"
-                        TextColor="White" />
-                </Grid>
-            </DataTemplate>
-        </CollectionView.HeaderTemplate>
-        <CollectionView.FooterTemplate>
-            <DataTemplate>
-                <Grid>
-                    <Label
-                        Margin="10"
-                        FontSize="18"
-                        HorizontalOptions="Center"
-                        Text="{Binding StringFormat='This is the end. {0}', Mode=OneTime}"
-                        TextColor="White" />
-                </Grid>
-            </DataTemplate>
-        </CollectionView.FooterTemplate>
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Grid
