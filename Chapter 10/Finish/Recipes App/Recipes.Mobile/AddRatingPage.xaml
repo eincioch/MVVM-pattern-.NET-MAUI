@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Recipes.Mobile.AddRatingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:annotations="clr-namespace:System.ComponentModel.DataAnnotations;assembly=System.ComponentModel.DataAnnotations"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vms="clr-namespace:Recipes.Client.Core.ViewModels;assembly=Recipes.Client.Core"
+    Title="Add Rating"
+    x:DataType="vms:AddRatingViewModel"
+    Shell.PresentationMode="ModalAnimated">
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Blue" />
+        </Style>
+    </ContentPage.Resources>
+    <VerticalStackLayout Padding="10">
+        <Grid RowDefinitions="Auto, Auto">
+            <Button
+                Margin="3"
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Start"
+                Text="Back" />
+            <Label
+                Grid.Row="1"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="{Binding RecipeTitle, StringFormat='Add Review for {0}'}"
+                TextColor="{StaticResource Primary}" />
+        </Grid>
+        <Label Text="Your email address:" />
+        <Grid ColumnDefinitions="*, 45">
+            <Entry Keyboard="Email" Text="{Binding EmailAddress, Mode=TwoWay}">
+                <Entry.Behaviors>
+                    <toolkit:EmailValidationBehavior
+                        Flags="ValidateOnValueChanged"
+                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                        RegexPattern="{Static vms:AddRatingViewModel.EmailValidationRegex}"
+                        ValidStyle="{StaticResource ValidEntryStyle}" />
+                </Entry.Behaviors>
+            </Entry>
+            <Label
+                Grid.Column="1"
+                FontFamily="MaterialIconsRegular"
+                FontSize="20"
+                Text="&#xe000;"
+                TextColor="Red"
+                VerticalOptions="Center">
+                <Label.Triggers>
+                    <DataTrigger
+                        Binding="{Binding ErrorExposer[EmailAddress].Count}"
+                        TargetType="Label"
+                        Value="0">
+                        <Setter Property="Text" Value="&#xe86c;" />
+                        <Setter Property="TextColor" Value="Blue" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
+        <Grid ColumnDefinitions="*, Auto" HeightRequest="45">
+            <Entry
+                Keyboard="Email"
+                Text="{Binding EmailAddress, Mode=TwoWay}"
+                VerticalOptions="End">
+                <Entry.Behaviors>
+                    <toolkit:EmailValidationBehavior
+                        Flags="ValidateOnValueChanged"
+                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                        RegexPattern="{Static vms:AddRatingViewModel.EmailValidationRegex}"
+                        ValidStyle="{StaticResource ValidEntryStyle}" />
+                </Entry.Behaviors>
+            </Entry>
+            <Label
+                Grid.Column="1"
+                FontFamily="MaterialIconsRegular"
+                FontSize="20"
+                Text="&#xe000;"
+                TextColor="Red"
+                VerticalOptions="Center">
+                <Label.Triggers>
+                    <DataTrigger
+                        Binding="{Binding ErrorExposer[EmailAddress].Count}"
+                        TargetType="Label"
+                        Value="0">
+                        <Setter Property="Text" Value="&#xe86c;" />
+                        <Setter Property="TextColor" Value="Blue" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
+
+        <Label Text="Display name:" />
+
+        <Entry Text="{Binding DisplayName, Mode=TwoWay}">
+            <Entry.Behaviors>
+                <toolkit:TextValidationBehavior
+                    Flags="ValidateOnValueChanged"
+                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                    MaximumLength="{Static vms:AddRatingViewModel.DisplayNameMaxLength}"
+                    MinimumLength="{Static vms:AddRatingViewModel.DisplayNameMinLength}"
+                    ValidStyle="{StaticResource ValidEntryStyle}" />
+            </Entry.Behaviors>
+        </Entry>
+
+        <Label Text="Rating (0-4):" />
+        <Entry Keyboard="Numeric" Text="{Binding RatingInput, Mode=TwoWay}">
+            <Entry.Behaviors>
+                <toolkit:NumericValidationBehavior
+                    Flags="ValidateOnValueChanged"
+                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                    MaximumDecimalPlaces="1"
+                    MaximumValue="{Static vms:AddRatingViewModel.RatingMaxVal}"
+                    MinimumValue="{Static vms:AddRatingViewModel.RatingMinVal}"
+                    ValidStyle="{StaticResource ValidEntryStyle}" />
+            </Entry.Behaviors>
+        </Entry>
+
+        <Label Text="Review (optional):" />
+        <Editor Text="{Binding Review, Mode=TwoWay}" />
+        <VerticalStackLayout BindableLayout.ItemsSource="{Binding ErrorExposer[Review]}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="annotations:ValidationResult">
+                    <Label
+                        FontSize="12"
+                        Text="{Binding ErrorMessage}"
+                        TextColor="Orange" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Errors}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="annotations:ValidationResult">
+                    <Label
+                        FontSize="12"
+                        Text="{Binding ErrorMessage}"
+                        TextColor="Red" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+
+        <Button Command="{Binding SubmitCommand}" Text="Submit" />
+        <Entry Margin="10,50" />
+    </VerticalStackLayout>
+</ContentPage>
