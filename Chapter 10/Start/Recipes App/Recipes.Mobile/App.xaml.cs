@@ -9,15 +9,8 @@ public partial class App : Application
         Application.Current.UserAppTheme = AppTheme.Light;
         InitializeComponent();
 
-        //Using Shell
         MainPage = new AppShell(ServiceProvider
             .GetService<INavigationInterceptor>());
-        //Using Shell
-
-        //Not using Shell
-        //MainPage = 
-        //ServiceProvider.Current.GetService<INavigationService>().GoToOverview();
-        //Not using Shell
     }
 }
 public class Label

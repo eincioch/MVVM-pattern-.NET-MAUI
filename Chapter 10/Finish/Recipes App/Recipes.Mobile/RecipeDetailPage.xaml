@@ -138,7 +138,7 @@
                     HorizontalOptions="Fill"
                     IsVisible="{Binding IsEnabled, Source={RelativeSource Self}}"
                     Text="Add as favorite"
-                    TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=2, AncestorType={x:Type VerticalStackLayout}}}" />
+                    TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=1, AncestorType={x:Type VerticalStackLayout}}}" />
                 <Button
                     Margin="5"
                     BackgroundColor="LightSlateGray"
@@ -146,7 +146,7 @@
                     HorizontalOptions="Fill"
                     IsVisible="{Binding IsEnabled, Source={RelativeSource Self}}"
                     Text="Remove as favorite"
-                    TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=2, AncestorType={x:Type VerticalStackLayout}}}" />
+                    TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=1, AncestorType={x:Type VerticalStackLayout}}}" />
 
                 <Button
                     Grid.Column="1"
@@ -155,7 +155,7 @@
                     Command="{Binding NavigateToAddRatingCommand}"
                     HorizontalOptions="Fill"
                     Text="Add rating"
-                    TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=2, AncestorType={x:Type VerticalStackLayout}}}" />
+                    TextColor="{Binding BackgroundColor, Source={RelativeSource AncestorLevel=1, AncestorType={x:Type VerticalStackLayout}}}" />
             </Grid>
 
             <VerticalStackLayout Padding="10">
@@ -171,7 +171,7 @@
                 <Label IsVisible="{Binding HideAllergenInformation, Mode=OneWay, Converter={StaticResource inverseBoolConverter}}" Text="{Binding Allergens, Converter={StaticResource listToStringConverter}}" />
             </VerticalStackLayout>
 
-            <VerticalStackLayout Margin="50,0" Padding="10">
+            <VerticalStackLayout Padding="10">
                 <Label
                     FontAttributes="Italic,Bold"
                     FontSize="16"
@@ -204,13 +204,13 @@
                                     CommandParameter="{Binding}"
                                     FontFamily="MaterialIconsRegular"
                                     Text="&#xe854;" />
-                                <!--<Label
+                                <Label
                                     FontAttributes="Bold"
                                     FontSize="16"
                                     Text="{Binding IngredientName, StringFormat='{0}:', Mode=OneTime}"
                                     VerticalOptions="Center" />
                                 <Label Text="{Binding DisplayAmount, Mode=OneWay}" VerticalOptions="Center" />
-                                <Label Text="{Binding Measurement, Mode=OneTime}" VerticalOptions="Center" />-->
+                                <Label Text="{Binding Measurement, Mode=OneTime}" VerticalOptions="Center" />
                             </HorizontalStackLayout>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>

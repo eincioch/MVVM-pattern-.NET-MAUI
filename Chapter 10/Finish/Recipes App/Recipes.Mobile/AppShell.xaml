@@ -9,44 +9,6 @@
     Shell.TabBarForegroundColor="White"
     Shell.TabBarTitleColor="White"
     Shell.TabBarUnselectedColor="Black">
-    <!--<Shell.FlyoutHeaderTemplate>
-        <DataTemplate>
-            <Grid BackgroundColor="{StaticResource Primary}" HeightRequest="125">
-                <Image
-                    Aspect="AspectFit"
-                    Opacity="0.6"
-                    Source="icon.png" />
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="26"
-                    HorizontalTextAlignment="Center"
-                    Text="Recipes!"
-                    TextColor="White"
-                    VerticalTextAlignment="End" />
-            </Grid>
-        </DataTemplate>
-    </Shell.FlyoutHeaderTemplate>
-    <Shell.FlyoutFooterTemplate>
-        <DataTemplate>
-            <Grid BackgroundColor="{StaticResource Primary}" HeightRequest="75">
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="14"
-                    HorizontalTextAlignment="Center"
-                    Text="Version 1.0"
-                    TextColor="White"
-                    VerticalTextAlignment="Center" />
-            </Grid>
-        </DataTemplate>
-    </Shell.FlyoutFooterTemplate>-->
-
-    <!--<FlyoutItem Title="Browse recipes">-->
-    <!--<ShellContent ContentTemplate="{DataTemplate local:RecipesOverviewPage}" />-->
-    <!--</FlyoutItem>
-    <FlyoutItem Title="Settings">-->
-    <!--<ShellContent ContentTemplate="{DataTemplate local:MainPage}" />-->
-    <!--</FlyoutItem>-->
-
     <TabBar>
         <Tab Title="Recipes">
             <Tab.Icon>
