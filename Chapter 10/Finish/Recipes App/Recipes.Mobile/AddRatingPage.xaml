@@ -32,7 +32,7 @@
                 TextColor="{StaticResource Primary}" />
         </Grid>
         <Label Text="Your email address:" />
-        <Grid ColumnDefinitions="*, 45">
+        <!--<Grid ColumnDefinitions="*, 45">
             <Entry Keyboard="Email" Text="{Binding EmailAddress, Mode=TwoWay}">
                 <Entry.Behaviors>
                     <toolkit:EmailValidationBehavior
@@ -59,7 +59,7 @@
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
-        </Grid>
+        </Grid>-->
         <Grid ColumnDefinitions="*, Auto" HeightRequest="45">
             <Entry
                 Keyboard="Email"
