@@ -49,11 +49,7 @@
             <toolkit:EventToCommandBehavior Command="{Binding UserIsBrowsingCommand}" EventName="Scrolled" />
         </ScrollView.Behaviors>
         <VerticalStackLayout Padding="10" BackgroundColor="GhostWhite">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+            <Grid ColumnDefinitions="*, Auto">
                 <Label
                     FontAttributes="Bold"
                     FontSize="22"

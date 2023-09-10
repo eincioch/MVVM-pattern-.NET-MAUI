@@ -32,34 +32,6 @@
                 TextColor="{StaticResource Primary}" />
         </Grid>
         <Label Text="Your email address:" />
-        <!--<Grid ColumnDefinitions="*, 45">
-            <Entry Keyboard="Email" Text="{Binding EmailAddress, Mode=TwoWay}">
-                <Entry.Behaviors>
-                    <toolkit:EmailValidationBehavior
-                        Flags="ValidateOnValueChanged"
-                        InvalidStyle="{StaticResource InvalidEntryStyle}"
-                        RegexPattern="{Static vms:AddRatingViewModel.EmailValidationRegex}"
-                        ValidStyle="{StaticResource ValidEntryStyle}" />
-                </Entry.Behaviors>
-            </Entry>
-            <Label
-                Grid.Column="1"
-                FontFamily="MaterialIconsRegular"
-                FontSize="20"
-                Text="&#xe000;"
-                TextColor="Red"
-                VerticalOptions="Center">
-                <Label.Triggers>
-                    <DataTrigger
-                        Binding="{Binding ErrorExposer[EmailAddress].Count}"
-                        TargetType="Label"
-                        Value="0">
-                        <Setter Property="Text" Value="&#xe86c;" />
-                        <Setter Property="TextColor" Value="Blue" />
-                    </DataTrigger>
-                </Label.Triggers>
-            </Label>
-        </Grid>-->
         <Grid ColumnDefinitions="*, Auto" HeightRequest="45">
             <Entry
                 Keyboard="Email"
