@@ -29,13 +29,6 @@ public class RecipeRatingsDetailViewModel : ObservableObject, INavigationParamet
         private set => SetProperty(ref _groupedReviews, value);
     }
 
-    bool _isLoading = true;
-    public bool IsLoading
-    {
-        get => _isLoading;
-        set => SetProperty(ref _isLoading, value);
-    }
-
     public ObservableCollection<object> SelectedReviews { get; } = new();
 
     public RelayCommand ReportReviewsCommand { get; }
@@ -60,7 +53,6 @@ public class RecipeRatingsDetailViewModel : ObservableObject, INavigationParamet
     {
         RecipeTitle = recipe.Name;
 
-        IsLoading = true;
         var loadRatings = await ratingsService.LoadRatings(recipe.Id);
 
         if (loadRatings is { IsSuccess: true, Data: var ratings })
@@ -80,7 +72,6 @@ public class RecipeRatingsDetailViewModel : ObservableObject, INavigationParamet
             else
                 await navigationService.GoBack();
         }
-        IsLoading = false;
     }
     
     private void SelectedReviews_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

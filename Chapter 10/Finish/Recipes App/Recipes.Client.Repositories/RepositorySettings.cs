@@ -2,10 +2,10 @@
 
 public class RepositorySettings
 {
-    public string ApiAddress { get; }
+    public HttpClient HttpClient { get; }
 
-    public RepositorySettings(string apiAddress)
+    public RepositorySettings(HttpClient httpClient)
     {
-        ApiAddress = apiAddress;
+        HttpClient = httpClient;
     }
 }

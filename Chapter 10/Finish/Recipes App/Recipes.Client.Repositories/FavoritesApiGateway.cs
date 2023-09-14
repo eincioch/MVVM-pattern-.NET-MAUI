@@ -14,8 +14,8 @@ internal class FavoritesApiGateway : ApiGateway, IFavoritesRepository
     public Task<Result<string[]>> LoadFavorites(string userId)
         => InvokeAndMap(_api.GetFavorites(userId));
 
-    public Task<Result<Nothing>> Remove(string userId, string id)
-        => InvokeAndMap(_api.DeleteFavorite(userId, new FavoriteDto(id)));
+    public Task<Result<Nothing>> Remove(string userId, string recipeId)
+        => InvokeAndMap(_api.DeleteFavorite(userId, recipeId));
 
     public FavoritesApiGateway(IFavoritesApi api)
     {

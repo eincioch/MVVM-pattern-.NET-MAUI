@@ -7,8 +7,10 @@ using Recipes.Client.Core.Navigation;
 using Recipes.Client.Core.Services;
 using Recipes.Client.Core.ViewModels;
 using Recipes.Client.Repositories;
+using Recipes.Mobile.Misc;
 using Recipes.Mobile.Navigation;
 using Recipes.Mobile.Services;
+using System.Net.Http;
 
 namespace Recipes.Mobile;
 
@@ -71,7 +73,9 @@ public static class MauiProgram
             ? "https://10.0.2.2:7220"
             : "https://localhost:7220";
 
-        builder.Services.RegisterRepositories(new RepositorySettings(baseAddress));
+        HttpClient httpClient = HttpClientHelper.GetPlatformHttpClient(baseAddress);
+
+        builder.Services.RegisterRepositories(new RepositorySettings(httpClient));
 
 #if DEBUG
         builder.Logging.AddDebug();

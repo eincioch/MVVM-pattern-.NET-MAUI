@@ -111,6 +111,15 @@ public partial class RecipeDetailViewModel : ObservableObject, INavigationParame
         }
     }
 
+    private bool _isLoading = true;
+
+    public bool IsLoading
+    {
+        get => _isLoading;
+        set => SetProperty(ref _isLoading, value);
+    }
+
+
     public ObservableCollection<RecipeIngredientViewModel> ShoppingList { get; } = new();
 
     public IRelayCommand AddAsFavoriteCommand { get; }
@@ -145,6 +154,8 @@ public partial class RecipeDetailViewModel : ObservableObject, INavigationParame
 
     private async Task LoadRecipe(string recipeId)
     {
+        IsLoading = true;
+
         var loadRecipeTask = recipeService.LoadRecipe(recipeId);
         var loadIsFavoriteTask = favoritesService.IsFavorite(recipeId);
         var loadRatingsTask = ratingsService.LoadRatingsSummary(recipeId);
@@ -163,6 +174,8 @@ public partial class RecipeDetailViewModel : ObservableObject, INavigationParame
         {
             MapRecipeData(loadRecipeTask.Result.Data, loadRatingsTask.Result.Data, loadIsFavoriteTask.Result);
         }
+
+        IsLoading = false;
     }
 
     private void MapRecipeData(RecipeDetail recipe, RatingsSummary ratings, bool isFavorite)

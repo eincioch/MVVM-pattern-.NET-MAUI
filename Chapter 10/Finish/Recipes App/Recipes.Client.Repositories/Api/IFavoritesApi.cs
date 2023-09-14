@@ -12,6 +12,6 @@ public interface IFavoritesApi
     [Post("/users/{userId}/favorites")]
     Task<ApiResponse<Nothing>> AddFavorite(string userId, FavoriteDto favorite);
 
-    [Delete("/users/{userId}/favorites")]
-    Task<ApiResponse<Nothing>> DeleteFavorite(string userId, FavoriteDto favorite);
+    [Delete("/users/{userId}/favorites/{recipeId}")]
+    Task<ApiResponse<Nothing>> DeleteFavorite(string userId, string recipeId);
 }

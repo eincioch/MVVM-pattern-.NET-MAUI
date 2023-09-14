@@ -15,11 +15,11 @@ public static class ServiceCollectionExtension
         RepositorySettings settings)
     {
         services.AddSingleton(
-            (s) => RestService.For<IRatingsApi>(settings.ApiAddress));
+            (s) => RestService.For<IRatingsApi>(settings.HttpClient));
         services.AddSingleton(
-            (s) => RestService.For<IRecipeApi>(settings.ApiAddress));
+            (s) => RestService.For<IRecipeApi>(settings.HttpClient));
         services.AddSingleton(
-            (s) => RestService.For<IFavoritesApi>(settings.ApiAddress));
+            (s) => RestService.For<IFavoritesApi>(settings.HttpClient));
 
         services.AddTransient<IRatingsRepository, RatingsApiGateway>();
         services.AddTransient<IRecipeRepository, RecipeApiGateway>();

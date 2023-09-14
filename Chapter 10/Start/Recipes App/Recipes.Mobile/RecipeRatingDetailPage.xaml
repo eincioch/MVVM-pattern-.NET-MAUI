@@ -96,12 +96,5 @@
             IsVisible="{Binding IsEnabled, Source={RelativeSource Mode=Self}}"
             Text="Report review(s)"
             VerticalOptions="End" />
-
-        <Grid BackgroundColor="#AAFFFFFF" IsVisible="{Binding IsLoading}">
-            <ActivityIndicator
-                HorizontalOptions="Center"
-                IsRunning="{Binding IsLoading}"
-                VerticalOptions="Center" />
-        </Grid>
     </Grid>
 </ContentPage>
