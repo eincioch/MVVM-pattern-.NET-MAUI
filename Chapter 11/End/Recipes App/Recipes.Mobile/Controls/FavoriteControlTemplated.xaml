@@ -15,16 +15,16 @@
         <ControlTemplate x:Key="DefaultTemplate">
             <Grid>
                 <Image
-                    HeightRequest="{Binding HeightRequest, Source={x:Reference scalableContent}}"
-                    IsVisible="{Binding IsInteractive, Source={RelativeSource AncestorType={x:Type local:FavoriteControl}}}"
+                    HeightRequest="{Binding HeightRequest, Source={x:Reference TemplatedParent}}"
+                    IsVisible="{Binding IsInteractive, Source={RelativeSource TemplatedParent}}"
                     Scale="1.2"
                     Source="{Binding Source, Source={x:Reference scalableContent}}"
                     WidthRequest="{Binding WidthRequest, Source={x:Reference scalableContent}}" />
                 <Image
                     x:Name="scalableContent"
-                    HeightRequest="{Binding HeightRequest, Source={RelativeSource AncestorType={x:Type local:FavoriteControl}}}"
+                    HeightRequest="{Binding HeightRequest, Source={RelativeSource TemplatedParent}}"
                     Source="favorite.png"
-                    WidthRequest="{Binding WidthRequest, Source={RelativeSource AncestorType={x:Type local:FavoriteControl}}}">
+                    WidthRequest="{Binding WidthRequest, Source={RelativeSource TemplatedParent}}">
                     <Image.Behaviors>
                         <toolkit:IconTintColorBehavior TintColor="{Binding IsFavorite, Source={x:Reference root}, Converter={StaticResource isFavoriteToColorConverter}}" />
                     </Image.Behaviors>

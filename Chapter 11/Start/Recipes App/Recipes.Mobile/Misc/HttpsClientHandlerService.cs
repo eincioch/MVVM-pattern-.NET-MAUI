@@ -16,20 +16,12 @@ internal class HttpsClientHandlerService
 #elif IOS
         var handler = new NSUrlSessionHandler
         {
-            TrustOverrideForUrl = IsHttpsLocalhost
+            //Trust all
+            TrustOverrideForUrl = (_, __, ___) => true
         };
         return handler;
 #else
         throw new PlatformNotSupportedException("Only Android and iOS supported.");
 #endif
     }
-
-#if IOS
-    public bool IsHttpsLocalhost(NSUrlSessionHandler sender, string url, Security.SecTrust trust)
-    {
-        if (url.StartsWith("https://localhost"))
-            return true;
-        return false;
-    }
-#endif
 }

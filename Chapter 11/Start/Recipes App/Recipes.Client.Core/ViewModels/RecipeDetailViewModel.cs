@@ -101,7 +101,7 @@ public partial class RecipeDetailViewModel : ObservableObject, INavigationParame
     public bool IsFavorite
     {
         get => _isFavorite;
-        private set
+        set
         {
             if (SetProperty(ref _isFavorite, value))
             {

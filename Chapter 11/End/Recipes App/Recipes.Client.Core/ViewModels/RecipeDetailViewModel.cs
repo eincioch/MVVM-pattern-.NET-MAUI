@@ -101,7 +101,7 @@ public partial class RecipeDetailViewModel : ObservableObject, INavigationParame
     public bool IsFavorite
     {
         get => _isFavorite;
-        private set
+        set
         {
             if (SetProperty(ref _isFavorite, value))
             {
@@ -124,11 +124,15 @@ public partial class RecipeDetailViewModel : ObservableObject, INavigationParame
 
     public IRelayCommand AddAsFavoriteCommand { get; }
     public IRelayCommand RemoveAsFavoriteCommand { get; }
+    public IRelayCommand FavoriteToggledCommand { get; }
     public IRelayCommand AddToShoppingListCommand { get; }
     public IRelayCommand RemoveFromShoppingListCommand { get; }
     public IRelayCommand UserIsBrowsingCommand { get; }
     public IAsyncRelayCommand NavigateToRatingsCommand { get; }
     public IAsyncRelayCommand NavigateToAddRatingCommand { get; }
+
+    int updateCount = 0;
+    int maxUpdatedAllowed = 5;
 
     public RecipeDetailViewModel(IRecipeService recipeService, 
         IFavoritesService favoritesService, 
@@ -145,6 +149,11 @@ public partial class RecipeDetailViewModel : ObservableObject, INavigationParame
                new AsyncRelayCommand(AddAsFavorite, CanAddAsFavorite);
         RemoveAsFavoriteCommand = 
             new AsyncRelayCommand(RemoveAsFavorite, CanRemoveAsFavorite);
+
+        FavoriteToggledCommand = new AsyncRelayCommand<bool>(
+          FavoriteToggled,
+          (e) => updateCount < maxUpdatedAllowed);
+
         UserIsBrowsingCommand = new RelayCommand(UserIsBrowsing);
         AddToShoppingListCommand = new RelayCommand<RecipeIngredientViewModel>(AddToShoppingList);
         RemoveFromShoppingListCommand = new RelayCommand<RecipeIngredientViewModel>(RemoveFromShoppingList);
@@ -207,20 +216,34 @@ public partial class RecipeDetailViewModel : ObservableObject, INavigationParame
         RatingSummary = new RecipeRatingsSummaryViewModel(ratings.TotalReviews, ratings.AverageRating, ratings.MaxRating);
     }
 
-    private Task AddAsFavorite()
-    {
-        IsFavorite = true;
-        return favoritesService.Add(recipeDto.Id);
-    }
-
     private bool CanAddAsFavorite() => !IsFavorite;
 
+    private Task AddAsFavorite()
+        => UpdateIsFavorite(true);
+
     private Task RemoveAsFavorite()
+        => UpdateIsFavorite(false);
+
+    private Task UpdateIsFavorite(bool newValue)
     {
-        IsFavorite = false;
-        return favoritesService.Remove(recipeDto.Id);
+        IsFavorite = newValue;
+        return FavoriteToggled(newValue);
     }
 
+    private async Task FavoriteToggled(bool isFavorite)
+    {
+        if (isFavorite)
+        {
+            await favoritesService.Add(recipeDto.Id);
+        }
+        else
+        {
+            await favoritesService.Remove(recipeDto.Id);
+        }
+
+        updateCount++;
+        FavoriteToggledCommand.NotifyCanExecuteChanged();
+    }
     private bool CanRemoveAsFavorite() => IsFavorite;
 
     private void UserIsBrowsing()

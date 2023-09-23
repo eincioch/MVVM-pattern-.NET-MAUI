@@ -29,6 +29,7 @@ public static class MauiProgram
             });
         builder.UseMauiCommunityToolkit();
 
+        builder.Services.AddSingleton<App>();
 
         builder.Services.AddTransient<RecipesOverviewPage>();
         builder.Services.AddTransient<RecipesOverviewViewModel>();
@@ -41,6 +42,9 @@ public static class MauiProgram
 
         builder.Services.AddTransient<SettingsPage>();
         builder.Services.AddTransient<SettingsViewModel>();
+
+        builder.Services.AddTransient<PickLanguagePage>();
+        builder.Services.AddTransient<PickLanguageViewModel>();
 
         builder.Services.AddTransient<AddRatingPage>();
         builder.Services.AddTransient<AddRatingViewModel>();
@@ -65,13 +69,19 @@ public static class MauiProgram
         Routing.RegisterRoute("Overview", typeof(RecipesOverviewPage));
         Routing.RegisterRoute("RecipeDetail", typeof(RecipeDetailPage));
         Routing.RegisterRoute("RecipeRating", typeof(RecipeRatingDetailPage));
+        Routing.RegisterRoute("PickLanguagePage", typeof(PickLanguagePage));
         Routing.RegisterRoute("AddRating", typeof(AddRatingPage));
 
 
+        //var baseAddress = DeviceInfo.Platform ==
+        //    DevicePlatform.Android
+        //    ? "https://10.0.2.2:7220"
+        //    : "https://localhost:7220/";
+
         var baseAddress = DeviceInfo.Platform ==
             DevicePlatform.Android
-            ? "https://10.0.2.2:7220"
-            : "https://localhost:7220";
+            ? "https://mvvm.azurewebsites.net"
+            : "https://mvvm.azurewebsites.net/";
 
         HttpClient httpClient = HttpClientHelper.GetPlatformHttpClient(baseAddress);
 

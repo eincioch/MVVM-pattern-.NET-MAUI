@@ -50,7 +50,7 @@
                     HorizontalOptions="Center"
                     InputTransparent="True"
                     IsEnabled="{Binding IsInteractive, Source={RelativeSource TemplatedParent}}"
-                    IsToggled="{Binding IsFavorite, Source={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                    IsToggled="{Binding IsFavorite, Source={RelativeSource TemplatedParent}, Mode=TwoWay}" />
             </VerticalStackLayout>
         </ControlTemplate>
     </ContentPage.Resources>
@@ -67,20 +67,22 @@
                         Text="{Binding Path=Title, Mode=OneWay}"
                         VerticalOptions="Center" />
 
-                    <!--<controls:FavoriteControl
+                    <controls:FavoriteControl
                         Grid.Column="1"
                         Margin="5"
+                        HeightRequest="35"
                         IsFavorite="{Binding IsFavorite, Mode=TwoWay}"
                         ToggledCommand="{Binding FavoriteToggledCommand}"
-                        VerticalOptions="Center" />-->
+                        VerticalOptions="Center"
+                        WidthRequest="35" />
 
-                    <controls:FavoriteControlTemplated
+                    <!--<controls:FavoriteControlTemplated
                         Grid.Column="1"
                         Margin="5"
                         ControlTemplate="{StaticResource FavoriteTemplate}"
-                        IsFavorite="{Binding IsFavorite, Mode=TwoWay}"
+                        IsFavorite="{Binding IsFavorite, Mode=OneWay}"
                         ToggledCommand="{Binding FavoriteToggledCommand}"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center" />-->
                 </Grid>
 
                 <Label FontSize="8" HorizontalOptions="End">
