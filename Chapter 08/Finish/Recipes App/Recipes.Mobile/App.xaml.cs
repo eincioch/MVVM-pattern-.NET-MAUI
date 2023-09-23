@@ -1,21 +1,27 @@
-﻿using Recipes.Mobile.Navigation;
+﻿using Recipes.Client.Core.Navigation;
+using Recipes.Mobile.Navigation;
 
 namespace Recipes.Mobile;
 
 public partial class App : Application
 {
-    public App()
+    //Shell
+    public App(INavigationInterceptor interceptor)
     {
         Application.Current.UserAppTheme = AppTheme.Light;
         InitializeComponent();
 
-        //Using Shell
-        MainPage = new AppShell(ServiceProvider
-            .GetService<INavigationInterceptor>());
-
-        //Not using Shell
-        //MainPage = 
-        //new NavigationPage();
-        //ServiceProvider.Current.GetService<INavigationService>().GoToOverview();
+        MainPage = new AppShell(interceptor);
     }
+
+    //Not using Shell
+    //public App(INavigationService navigationService)
+    //{
+    //    Application.Current.UserAppTheme = AppTheme.Light;
+    //    InitializeComponent();
+
+    //    MainPage = new NavigationPage();
+
+    //    navigationService.GoToOverview();
+    //}
 }

@@ -1,4 +1,6 @@
-﻿using Recipes.Client.Core.Features.Recipes;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using Recipes.Client.Core.Features.Recipes;
+using Recipes.Client.Core.Messages;
 using Recipes.Client.Core.Navigation;
 
 namespace Recipes.Mobile.Navigation;
@@ -12,6 +14,10 @@ public class NavigationService : INavigationService, INavigationInterceptor
     public Task GoToRecipeRatingDetail(RecipeDetailDto recipe)
         => Navigate("RecipeRating",
             new() { { "recipe", recipe } });
+
+    public Task GoToChooseLanguage(string currentLanguage)
+        => Navigate("PickLanguagePage",
+            new() { { "language", currentLanguage } });
 
     public Task GoBack()
         =>  Shell.Current.GoToAsync("..");

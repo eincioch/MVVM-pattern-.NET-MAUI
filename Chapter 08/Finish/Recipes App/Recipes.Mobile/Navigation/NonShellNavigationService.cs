@@ -34,6 +34,10 @@ public class NonShellNavigationService : INavigationService
     public Task GoToOverview()
     => Navigate("Overview", null);
 
+    public Task GoToChooseLanguage(string currentLanguage)
+        => Navigate("PickLanguagePage",
+        new() { { "language", currentLanguage } });
+
     private async Task Navigate(string key,
     Dictionary<string, object> parameters)
     {

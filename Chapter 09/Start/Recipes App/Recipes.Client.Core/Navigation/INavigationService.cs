@@ -8,5 +8,6 @@ public interface INavigationService
     Task GoToRecipeDetail(string recipeId);
     Task GoToRecipeRatingDetail(RecipeDetailDto recipe);
     Task GoBack();
+    Task GoToChooseLanguage(string currentLanguage);
     Task GoToAddRating(RecipeDetailDto recipeDto);
 }

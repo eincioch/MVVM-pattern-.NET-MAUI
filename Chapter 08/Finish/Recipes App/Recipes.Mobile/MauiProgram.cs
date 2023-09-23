@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls;
 using Recipes.Client.Core.Features.Favorites;
 using Recipes.Client.Core.Features.Ratings;
 using Recipes.Client.Core.Features.Recipes;
@@ -24,6 +25,7 @@ public static class MauiProgram
             });
 		builder.UseMauiCommunityToolkit();
 
+        builder.Services.AddSingleton<App>();
 
 		builder.Services.AddTransient<RecipesOverviewPage>();
 		builder.Services.AddTransient<RecipesOverviewViewModel>();
@@ -36,6 +38,9 @@ public static class MauiProgram
 
         builder.Services.AddTransient<SettingsPage>();
         builder.Services.AddTransient<SettingsViewModel>();
+
+        builder.Services.AddTransient<PickLanguagePage>();
+        builder.Services.AddTransient<PickLanguageViewModel>();
 
         builder.Services.AddSingleton<IFavoritesService, FavoritesService>();
 
@@ -57,6 +62,7 @@ public static class MauiProgram
         Routing.RegisterRoute("Overview", typeof(RecipesOverviewPage));
         Routing.RegisterRoute("RecipeDetail", typeof(RecipeDetailPage));
         Routing.RegisterRoute("RecipeRating", typeof(RecipeRatingsDetailPage));
+        Routing.RegisterRoute("PickLanguagePage", typeof(PickLanguagePage));
         //Shell
 
         //Non-Shell
@@ -64,7 +70,8 @@ public static class MauiProgram
 
         //Routes.Register<RecipesOverviewPage>("Overview");
         //Routes.Register<RecipeDetailPage>("RecipeDetail");
-        //Routes.Register<RecipeRatingDetailPage>("RecipeRating");
+        //Routes.Register<RecipeRatingsDetailPage>("RecipeRating");
+        //Routes.Register<PickLanguagePage>("PickLanguagePage");
         //Non-Shell
 
 #if DEBUG

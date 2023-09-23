@@ -4,12 +4,11 @@ namespace Recipes.Mobile;
 
 public partial class App : Application
 {
-    public App()
+    public App(INavigationInterceptor interceptor)
     {
         Application.Current.UserAppTheme = AppTheme.Light;
         InitializeComponent();
 
-        MainPage = new AppShell(ServiceProvider
-            .GetService<INavigationInterceptor>());
+        MainPage = new AppShell(interceptor);
     }
 }

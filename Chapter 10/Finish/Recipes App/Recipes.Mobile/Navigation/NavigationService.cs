@@ -13,6 +13,10 @@ public class NavigationService : INavigationService, INavigationInterceptor
         => Navigate("RecipeRating",
             new() { { "recipe", recipe } });
 
+    public Task GoToChooseLanguage(string currentLanguage)
+        => Navigate("PickLanguagePage",
+            new() { { "language", currentLanguage } });
+
     public Task GoToAddRating(RecipeDetail recipe)
         => Navigate("AddRating",
            new() { { "recipe", recipe } });

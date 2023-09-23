@@ -83,6 +83,9 @@
 	  <Compile Update="RecipeRatingsDetailPage.xaml.cs">
 	    <DependentUpon>RecipeRatingsDetailPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="PickLanguagePage.xaml.cs">
+	    <DependentUpon>PickLanguagePage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -93,6 +96,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="RecipesOverviewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="PickLanguagePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="SettingsPage.xaml">

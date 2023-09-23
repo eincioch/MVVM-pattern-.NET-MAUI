@@ -35,6 +35,9 @@ public static class MauiProgram
         builder.Services.AddTransient<SettingsPage>();
         builder.Services.AddTransient<SettingsViewModel>();
 
+        builder.Services.AddTransient<PickLanguagePage>();
+        builder.Services.AddTransient<PickLanguageViewModel>();
+
         builder.Services.AddSingleton<IFavoritesService, FavoritesService>();
 
 
@@ -47,6 +50,7 @@ public static class MauiProgram
         Routing.RegisterRoute("MainPage", typeof(RecipesOverviewPage));
         Routing.RegisterRoute("RecipeDetail", typeof(RecipeDetailPage));
         Routing.RegisterRoute("RecipeRating", typeof(RecipeRatingsDetailPage));
+        Routing.RegisterRoute("PickLanguagePage", typeof(PickLanguagePage));
 
 #if DEBUG
         builder.Logging.AddDebug();
