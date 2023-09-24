@@ -1,16 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using Recipes.Client.Core.Messages;
 using Recipes.Client.Core.Navigation;
 
 namespace Recipes.Client.Core.ViewModels;
 
-public class SettingsViewModel : ObservableObject, INavigatedTo, INavigatedFrom
+public class SettingsViewModel : ObservableObject, INavigationParameterReceiver
 {
-    INavigationService _navigationService;
+    readonly INavigationService _navigationService;
 
-    private string currentLanguage = "Dutch";
+    private string currentLanguage = "English";
 
     public string CurrentLanguage
     {
@@ -28,23 +26,15 @@ public class SettingsViewModel : ObservableObject, INavigatedTo, INavigatedFrom
 
     private async Task ChooseLanguage()
     {
-        WeakReferenceMessenger.Default
-          .Register<LanguageSelectedMessage>(this, 
-          (r, m) => ((SettingsViewModel)r)
-          .CurrentLanguage = m.Value);
-        
         await _navigationService.GoToChooseLanguage(CurrentLanguage);
     }
 
-    public Task OnNavigatedFrom(NavigationType navigationType)
+    public Task OnNavigatedTo(Dictionary<string, object> parameters)
     {
-        return Task.CompletedTask;
-    }
-
-    public Task OnNavigatedTo(NavigationType navigationType)
-    {
-        WeakReferenceMessenger.Default
-          .Unregister<LanguageSelectedMessage>(this);
+        if(parameters is not null && parameters.ContainsKey("SelectedLanguage"))
+        {
+            CurrentLanguage = parameters["SelectedLanguage"] as string;
+        }
         return Task.CompletedTask;
     }
 }

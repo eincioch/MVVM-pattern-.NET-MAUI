@@ -1,5 +1,6 @@
 ﻿using Recipes.Client.Core.Features.Recipes;
 using Recipes.Client.Core.Navigation;
+using Recipes.Client.Core.ViewModels;
 
 namespace Recipes.Mobile.Navigation;
 
@@ -9,7 +10,7 @@ public class NonShellNavigationService : INavigationService
     {
         get
         {
-            INavigation? navigation = 
+            INavigation? navigation =
                 Application.Current?.MainPage?.Navigation;
             if (navigation is not null)
                 return navigation;
@@ -22,6 +23,16 @@ public class NonShellNavigationService : INavigationService
 
     public Task GoBack()
         => Navigation.PopAsync();
+
+    public async Task GoBackAndReturn(Dictionary<string, object> parameters)
+    {
+        await GoBack();
+        if(Navigation.NavigationStack.Last().BindingContext 
+            is INavigationParameterReceiver receiver)
+            {
+                await receiver.OnNavigatedTo(parameters);
+            }
+    }
 
     public Task GoToRecipeDetail(string recipeId)
     => Navigate("RecipeDetail",
@@ -47,7 +58,7 @@ public class NonShellNavigationService : INavigationService
         page.NavigatedFrom += Page_NavigatedFrom;
 
         await Navigation.PushAsync(page);
-        
+
         if (page.BindingContext
             is INavigationParameterReceiver receiver)
         {
@@ -74,7 +85,7 @@ public class NonShellNavigationService : INavigationService
             {
                 page.NavigatedFrom -= Page_NavigatedFrom;
             }
-            await OnNavigatedTo(Navigation.NavigationStack.Last().BindingContext, 
+            await OnNavigatedTo(Navigation.NavigationStack.Last().BindingContext,
                 isForwardNavigation ? NavigationType.Forward : NavigationType.Back);
         }
     }

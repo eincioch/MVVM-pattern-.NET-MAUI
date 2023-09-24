@@ -63,6 +63,7 @@ public static class MauiProgram
         Routing.RegisterRoute("RecipeDetail", typeof(RecipeDetailPage));
         Routing.RegisterRoute("RecipeRating", typeof(RecipeRatingsDetailPage));
         Routing.RegisterRoute("PickLanguagePage", typeof(PickLanguagePage));
+        Routing.RegisterRoute("SettingsPage", typeof(SettingsPage));
         //Shell
 
         //Non-Shell
@@ -72,6 +73,7 @@ public static class MauiProgram
         //Routes.Register<RecipeDetailPage>("RecipeDetail");
         //Routes.Register<RecipeRatingsDetailPage>("RecipeRating");
         //Routes.Register<PickLanguagePage>("PickLanguagePage");
+        //Routes.Register<SettingsPage>("SettingsPage");
         //Non-Shell
 
 #if DEBUG

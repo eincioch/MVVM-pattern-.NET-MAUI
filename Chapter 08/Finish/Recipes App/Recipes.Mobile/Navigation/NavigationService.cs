@@ -22,6 +22,17 @@ public class NavigationService : INavigationService, INavigationInterceptor
     public Task GoBack()
         =>  Shell.Current.GoToAsync("..");
 
+    public async Task GoBackAndReturn(Dictionary<string, object> parameters)
+    {
+        await GoBack();
+
+        if (Shell.Current.CurrentPage.BindingContext
+            is INavigationParameterReceiver receiver)
+        {
+            await receiver.OnNavigatedTo(parameters);
+        }
+    }
+
     private async Task Navigate(string pageName, 
         Dictionary<string, object> parameters)
     {
@@ -57,7 +68,6 @@ public class NavigationService : INavigationService, INavigationInterceptor
     }
 
     public Task GoToOverview()
-    {
-        throw new NotImplementedException();
-    }
+        => Navigate("Overview", null);
+    
 }

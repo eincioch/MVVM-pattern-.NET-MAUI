@@ -1,4 +1,5 @@
 ﻿using Recipes.Client.Core.Features.Recipes;
+using Recipes.Client.Core.ViewModels;
 
 namespace Recipes.Client.Core.Navigation;
 
@@ -8,5 +9,6 @@ public interface INavigationService
     Task GoToRecipeDetail(string recipeId);
     Task GoToRecipeRatingDetail(RecipeDetailDto recipe);
     Task GoBack();
+    Task GoBackAndReturn(Dictionary<string, object> parameters);
     Task GoToChooseLanguage(string currentLanguage);
 }

@@ -3,11 +3,10 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Recipes.Client.Core.ViewModels;
 
-public class SettingsViewModel : ObservableObject//, INavigatedTo, INavigatedFrom
+public class SettingsViewModel : ObservableObject
 {
-    //INavigationService _navigationService;
 
-    private string currentLanguage = "Dutch";
+    private string currentLanguage = "English";
 
     public string CurrentLanguage
     {
@@ -17,10 +16,8 @@ public class SettingsViewModel : ObservableObject//, INavigatedTo, INavigatedFro
 
     public AsyncRelayCommand SelectLanguageCommand { get; }
 
-    //public SettingsViewModel(INavigationService service)
     public SettingsViewModel()
     {
-        //_navigationService = service;
         SelectLanguageCommand = new AsyncRelayCommand(ChooseLanguage);
     }
 
@@ -28,14 +25,4 @@ public class SettingsViewModel : ObservableObject//, INavigatedTo, INavigatedFro
     {
         
     }
-
-    //public Task OnNavigatedFrom(NavigationType navigationType)
-    //{
-    //    return Task.CompletedTask;
-    //}
-
-    //public Task OnNavigatedTo(NavigationType navigationType)
-    //{
-    //    return Task.CompletedTask;
-    //}
 }
