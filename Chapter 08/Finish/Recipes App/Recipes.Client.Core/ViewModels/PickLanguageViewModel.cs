@@ -44,7 +44,8 @@ public class PickLanguageViewModel : ObservableObject,
             });
     }
 
-    public async Task OnNavigatedTo(Dictionary<string, object> parameters)
+    public async Task OnNavigatedTo(
+        Dictionary<string, object> parameters)
     {
         _selectedLanguage = parameters["language"] as string;
         OnPropertyChanged(nameof(SelectedLanguage));

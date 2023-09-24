@@ -1,7 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using Recipes.Client.Core.Messages;
 using Recipes.Client.Core.Navigation;
 
 namespace Recipes.Client.Core.ViewModels;
@@ -10,15 +7,19 @@ public class PickLanguageViewModel : ObservableObject,
     INavigationParameterReceiver
 {
     readonly INavigationService _navigationService;
-    public AsyncRelayCommand OkCommand { get; }
 
-
-    private string _selectedLanguage = "English";
+    private string _selectedLanguage;
 
     public string SelectedLanguage
     {
         get => _selectedLanguage;
-        set => SetProperty(ref _selectedLanguage, value);
+        set
+        {
+            if (SetProperty(ref _selectedLanguage, value))
+            {
+                LanguagePicked();
+            }
+        }
     }
 
     public List<string> Languages { get; set; } = new List<string>()
@@ -33,19 +34,20 @@ public class PickLanguageViewModel : ObservableObject,
     public PickLanguageViewModel(INavigationService navigationService)
     {
         _navigationService = navigationService;
-        OkCommand = new AsyncRelayCommand(LanguagePicked);
     }
 
     private Task LanguagePicked()
     {
-        WeakReferenceMessenger.Default
-            .Send(new LanguageChangedMessage(SelectedLanguage));
-        return _navigationService.GoBack();
+        return _navigationService.GoBackAndReturn(
+            new Dictionary<string, object> {
+                { "SelectedLanguage", SelectedLanguage }
+            });
     }
 
-    public Task OnNavigatedTo(Dictionary<string, object> parameters)
+    public async Task OnNavigatedTo(
+        Dictionary<string, object> parameters)
     {
-        SelectedLanguage = parameters["language"] as string;
-        return Task.CompletedTask;
+        _selectedLanguage = parameters["language"] as string;
+        OnPropertyChanged(nameof(SelectedLanguage));
     }
 }

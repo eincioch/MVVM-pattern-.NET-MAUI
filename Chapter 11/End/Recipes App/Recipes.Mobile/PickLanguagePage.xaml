@@ -12,10 +12,7 @@
         <Picker
             HorizontalOptions="Center"
             ItemsSource="{Binding Languages}"
-            SelectedItem="{Binding SelectedLanguage}" />
-        <Button
-            Command="{Binding OkCommand}"
-            HorizontalOptions="Center"
-            Text="OK" />
+            SelectedItem="{Binding SelectedLanguage}" 
+            WidthRequest="200" />
     </VerticalStackLayout>
 </ContentPage>

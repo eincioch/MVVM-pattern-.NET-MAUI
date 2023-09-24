@@ -70,6 +70,7 @@ public static class MauiProgram
         Routing.RegisterRoute("RecipeDetail", typeof(RecipeDetailPage));
         Routing.RegisterRoute("RecipeRating", typeof(RecipeRatingDetailPage));
         Routing.RegisterRoute("PickLanguagePage", typeof(PickLanguagePage));
+        Routing.RegisterRoute("SettingsPage", typeof(SettingsPage));
         Routing.RegisterRoute("AddRating", typeof(AddRatingPage));
 
 

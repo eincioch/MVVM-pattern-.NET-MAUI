@@ -26,7 +26,8 @@ public class SettingsViewModel : ObservableObject, INavigationParameterReceiver
 
     private async Task ChooseLanguage()
     {
-        await _navigationService.GoToChooseLanguage(CurrentLanguage);
+        await _navigationService
+            .GoToChooseLanguage(CurrentLanguage);
     }
 
     public Task OnNavigatedTo(Dictionary<string, object> parameters)

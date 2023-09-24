@@ -1,5 +1,4 @@
 ﻿using Recipes.Client.Core.Features.Recipes;
-using Recipes.Client.Core.ViewModels;
 
 namespace Recipes.Client.Core.Navigation;
 
