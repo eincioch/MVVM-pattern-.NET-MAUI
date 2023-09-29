@@ -38,7 +38,7 @@ public class SettingsViewModel : ObservableObject, INavigationParameterReceiver
 
         if (confirm)
         {
-            SwitchLanguage(new CultureInfo(newLanguage));
+            SwitchLanguage(newLanguage);
             await NotifySwitch();
         }
     }
