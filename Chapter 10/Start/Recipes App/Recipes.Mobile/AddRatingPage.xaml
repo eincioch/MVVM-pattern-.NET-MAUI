@@ -9,14 +9,6 @@
     Title="Add Rating"
     x:DataType="vms:AddRatingViewModel"
     Shell.PresentationMode="ModalAnimated">
-    <ContentPage.Resources>
-        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
-            <Setter Property="TextColor" Value="Red" />
-        </Style>
-        <Style x:Key="ValidEntryStyle" TargetType="Entry">
-            <Setter Property="TextColor" Value="Blue" />
-        </Style>
-    </ContentPage.Resources>
     <VerticalStackLayout Padding="10">
         <Grid RowDefinitions="Auto, Auto">
             <Button
@@ -32,47 +24,12 @@
                 TextColor="{StaticResource Primary}" />
         </Grid>
         <Label Text="Your email address:" />
-        <Grid ColumnDefinitions="*, 45">
-            <Entry Keyboard="Email" Text="{Binding EmailAddress, Mode=TwoWay}">
-                <Entry.Behaviors>
-                    <toolkit:EmailValidationBehavior
-                        Flags="ValidateOnValueChanged"
-                        InvalidStyle="{StaticResource InvalidEntryStyle}"
-                        RegexPattern="{Static vms:AddRatingViewModel.EmailValidationRegex}"
-                        ValidStyle="{StaticResource ValidEntryStyle}" />
-                </Entry.Behaviors>
-            </Entry>
-            <Label
-                Grid.Column="1"
-                FontFamily="MaterialIconsRegular"
-                FontSize="20"
-                Text="&#xe000;"
-                TextColor="Red"
-                VerticalOptions="Center">
-                <Label.Triggers>
-                    <DataTrigger
-                        Binding="{Binding ErrorExposer[EmailAddress].Count}"
-                        TargetType="Label"
-                        Value="0">
-                        <Setter Property="Text" Value="&#xe86c;" />
-                        <Setter Property="TextColor" Value="Blue" />
-                    </DataTrigger>
-                </Label.Triggers>
-            </Label>
-        </Grid>
         <Grid ColumnDefinitions="*, Auto" HeightRequest="45">
             <Entry
                 Keyboard="Email"
                 Text="{Binding EmailAddress, Mode=TwoWay}"
-                VerticalOptions="End">
-                <Entry.Behaviors>
-                    <toolkit:EmailValidationBehavior
-                        Flags="ValidateOnValueChanged"
-                        InvalidStyle="{StaticResource InvalidEntryStyle}"
-                        RegexPattern="{Static vms:AddRatingViewModel.EmailValidationRegex}"
-                        ValidStyle="{StaticResource ValidEntryStyle}" />
-                </Entry.Behaviors>
-            </Entry>
+                VerticalOptions="End" />
+
             <Label
                 Grid.Column="1"
                 FontFamily="MaterialIconsRegular"
@@ -94,29 +51,10 @@
 
         <Label Text="Display name:" />
 
-        <Entry Text="{Binding DisplayName, Mode=TwoWay}">
-            <Entry.Behaviors>
-                <toolkit:TextValidationBehavior
-                    Flags="ValidateOnValueChanged"
-                    InvalidStyle="{StaticResource InvalidEntryStyle}"
-                    MaximumLength="{Static vms:AddRatingViewModel.DisplayNameMaxLength}"
-                    MinimumLength="{Static vms:AddRatingViewModel.DisplayNameMinLength}"
-                    ValidStyle="{StaticResource ValidEntryStyle}" />
-            </Entry.Behaviors>
-        </Entry>
+        <Entry Text="{Binding DisplayName, Mode=TwoWay}" />
 
         <Label Text="Rating (0-4):" />
-        <Entry Keyboard="Numeric" Text="{Binding RatingInput, Mode=TwoWay}">
-            <Entry.Behaviors>
-                <toolkit:NumericValidationBehavior
-                    Flags="ValidateOnValueChanged"
-                    InvalidStyle="{StaticResource InvalidEntryStyle}"
-                    MaximumDecimalPlaces="1"
-                    MaximumValue="{Static vms:AddRatingViewModel.RatingMaxVal}"
-                    MinimumValue="{Static vms:AddRatingViewModel.RatingMinVal}"
-                    ValidStyle="{StaticResource ValidEntryStyle}" />
-            </Entry.Behaviors>
-        </Entry>
+        <Entry Keyboard="Numeric" Text="{Binding RatingInput, Mode=TwoWay}" />
 
         <Label Text="Review (optional):" />
         <Editor Text="{Binding Review, Mode=TwoWay}" />
@@ -131,7 +69,7 @@
             </BindableLayout.ItemTemplate>
         </VerticalStackLayout>
 
-        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Errors}">
+        <VerticalStackLayout Margin="0,10,0,0" BindableLayout.ItemsSource="{Binding Errors}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="annotations:ValidationResult">
                     <Label
