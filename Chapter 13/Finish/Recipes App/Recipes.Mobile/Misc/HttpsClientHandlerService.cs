@@ -1,4 +1,6 @@
-﻿namespace Recipes.Mobile.Misc;
+﻿using System;
+
+namespace Recipes.Mobile.Misc;
 
 internal class HttpsClientHandlerService
 {
@@ -16,8 +18,8 @@ internal class HttpsClientHandlerService
 #elif IOS
         var handler = new NSUrlSessionHandler
         {
-            //Trust all
-            TrustOverrideForUrl = (_, __, ___) => true
+            //Trust localhost
+            TrustOverrideForUrl = (_, url, __) => url.StartsWith("https://localhost")
         };
         return handler;
 #else
